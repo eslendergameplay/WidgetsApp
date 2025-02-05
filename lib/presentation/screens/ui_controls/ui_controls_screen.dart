@@ -37,6 +37,8 @@ class _UiControlsViewState extends State<_UiControlsView> {
   bool wantsLunch = false;
   bool wantsDinner = false;
   /*
+  Las varibles deben ser de clase si se actualizan y no dentro del build porque si no se tomaran como locales
+  del metodo y no se actualizaran cuidado.
   SwitchListTile(value:true,onChanged: (value){},title:const Text('Developver Mode'),
   subTilte:const Text('Controles adicionales.'));
   La ventaja de ser un SwitchListtile es que este esta dentro de una lista y podemos tener mas facilidad
