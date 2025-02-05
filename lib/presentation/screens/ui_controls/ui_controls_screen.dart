@@ -24,6 +24,18 @@ class _UiControlsView extends StatefulWidget {
 enum TransportationWay { car, plane, boat, submarine }
 
 class _UiControlsViewState extends State<_UiControlsView> {
+
+  bool isDevelopver = false;
+    /*
+    Si se necesita capturar el valor se toma del valor de grupo selectedTransportation y el valor
+    se queda y hay mas tiles pero se vera mas adelante,
+    Al comprimirlos con el expansion tile se puede colocar que el estado por defecto puede se expanded o 
+    ver que otras propiedades o comportaientos tiene.
+    */
+  TransportationWay selectedTransportation = TransportationWay.car;
+  bool wantsBreakfast = false;
+  bool wantsLunch = false;
+  bool wantsDinner = false;
   /*
   SwitchListTile(value:true,onChanged: (value){},title:const Text('Developver Mode'),
   subTilte:const Text('Controles adicionales.'));
@@ -34,28 +46,16 @@ class _UiControlsViewState extends State<_UiControlsView> {
   */
   @override
   Widget build(BuildContext context) {
-    bool isDevelopver = false;
-    /*
-    Si se necesita capturar el valor se toma del valor de grupo selectedTransportation y el valor
-    se queda y hay mas tiles pero se vera mas adelante,
-    Al comprimirlos con el expansion tile se puede colocar que el estado por defecto puede se expanded o 
-    ver que otras propiedades o comportaientos tiene.
-    */
-    TransportationWay selectedTransportation = TransportationWay.car;
-    bool wantsBreakfast = false;
-    bool wantsLunch = false;
-    bool wantsDinner = false;
 
     return ListView(physics: const ClampingScrollPhysics(), children: [
       SwitchListTile(
-          title: const Text('Developver Mode.'),
-          subtitle: const Text('Controles adicionales'),
-          value: isDevelopver,
-          onChanged: (value) {
-            setState(() {
-              isDevelopver = !isDevelopver;
-            });
-          }),
+        title: const Text('Developver Mode.'),
+        subtitle: const Text('Controles adicionales'),
+        value: isDevelopver,
+        onChanged: (value) => setState(() {
+          isDevelopver = !isDevelopver;
+        }),
+      ),
       ExpansionTile(
           title: const Text('Vehiculo De Transporte :'),
           subtitle: Text('$selectedTransportation'),
@@ -100,7 +100,7 @@ class _UiControlsViewState extends State<_UiControlsView> {
       del tema se cambia el color de los widgets con el tema especificado,se debe practicar y acostumbarse
       a tener un tema centralizado asi es mas facil cambiar los colores,formas y ayudar a que el texto
       tenga cierto formato y se vea con un estilo o forma diferente.
-      */    
+      */
       CheckboxListTile(
           title: const Text('¿Desayuno?'),
           value: wantsBreakfast,
@@ -118,7 +118,7 @@ class _UiControlsViewState extends State<_UiControlsView> {
           value: wantsDinner,
           onChanged: (value) {
             setState(() {
-
+              wantsDinner = !wantsDinner;
             });
           })
     ]);

@@ -19,13 +19,13 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.removePadding(
-        removeBottom: true,
-        removeTop: true,
-        context: context,
-        child: Scaffold(
-            backgroundColor: Colors.black,
-            body: RefreshIndicator(
+    return Scaffold(
+        backgroundColor :Colors.black,
+        body: MediaQuery.removePadding(
+            removeBottom: true,
+            removeTop: true,
+            context: context,
+            child: RefreshIndicator(
               edgeOffset: 10,
               strokeWidth: 2,
               onRefresh: () {
@@ -34,7 +34,8 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
                 O onRefresh : onRefresh, se coloca asi porque tiene los mismos argumentos o parametros
                 */
               },
-              child: ListView.builder(
+              child: Center(child: ListView.builder(
+                  controller: scrollController,
                   itemCount: imagesIds.length,
                   itemBuilder: (context, index) {
                     return FadeInImage(
@@ -45,8 +46,8 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
                             const AssetImage('assets/images/jar-loading.gif'),
                         image: NetworkImage(
                             'https://picsum.photos/id/${imagesIds[index]}/500/300'));
-                  }),
-            ),
+                  }),)
+            )),
             floatingActionButton: FloatingActionButton(
                 onPressed: () => context.pop(),
                 //Para colocar un ternario y con la animacion no sea tan duro o estricto
@@ -54,7 +55,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
                     ? SpinPerfect(
                         infinite: true,
                         child: const Icon(Icons.refresh_rounded))
-                    : FadeIn(child: Icon(Icons.arrow_back_ios_new_outlined)))));
+                    : FadeIn(child: Icon(Icons.arrow_back_ios_new_outlined))));
   }
 
   void addFiveImages() {
@@ -87,6 +88,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     imagesIds.add(lastId + 1);
     addFiveImages();
     setState(() {});
+    moveScrollToBottom();
   }
 
   void moveScrollToBottom() {
@@ -96,7 +98,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     Se coloca primero a que posicion ira y si se quiere arriba en vez de 120 seria 0 por eso es 120 abajo
     y este se estira abajo si no se extiendio lo sufientemente menos de el scroll maximo o igual no se cumple la
     condicion.
-    */    
+    */
     scrollController.animateTo(scrollController.position.pixels + 120,
         duration: const Duration(milliseconds: 300),
         curve: Curves.fastOutSlowIn);
