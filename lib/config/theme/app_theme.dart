@@ -14,8 +14,9 @@ const colorList = <Color>[
 
 class AppTheme {
   final int selectedColor;
+  final bool isDarkMode;
 
-  const AppTheme({this.selectedColor = 0})
+  const AppTheme({this.selectedColor = 0, this.isDarkMode = false})
       : assert(selectedColor >= 0 && selectedColor < colorList.length,
             'Selected Color must be between 0 and ${colorList.length - 1}');
   /*O
@@ -24,10 +25,15 @@ class AppTheme {
 
   ThemeData getTheme() {
     return ThemeData(
-      useMaterial3 : true,
-      colorSchemeSeed: colorList[selectedColor],
-      //Esto evita que en android el titulo de la appbar este a la izquierda y este en el centro.
-      appBarTheme : AppBarTheme(centerTitle:true)
-    );
+        useMaterial3: true,
+        colorSchemeSeed: colorList[selectedColor],
+        brightness: (isDarkMode) ? Brightness.dark : Brightness.light,
+        //Esto evita que en android el titulo de la appbar este a la izquierda y este en el centro.
+        appBarTheme: AppBarTheme(centerTitle: true));
   }
+
+  /*Tomara el valor y en base eso creara una instancia con el valor antes colocado o el que venia por defecto
+  hasta cambiar*/
+  AppTheme copyWith({int? selectedColor, bool? isDarkMode}) =>
+      AppTheme(selectedColor : selectedColor ?? this.selectedColor,isDarkMode:  isDarkMode ?? this.isDarkMode);
 }

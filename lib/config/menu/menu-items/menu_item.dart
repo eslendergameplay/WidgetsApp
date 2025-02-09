@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 const appMenuItems = <MenuItem>[
+  MenuItem(title:'Riverpod Counter.',subTitle:'Introduccion a Riverpod.',link:'/counter_river',icon:
+  Icons.add),
   MenuItem(title:'Botones',subTitle:'Varios Botones en flutter.',link:'/buttons',
   icon: Icons.smart_button_outlined),
   MenuItem(title:'Tarjetas',subTitle:'Un contenedor estilizado o con caracteristicas especificas.',
@@ -17,6 +19,8 @@ const appMenuItems = <MenuItem>[
   link:'/tutorial',icon:Icons.accessible_rounded),
   MenuItem(title:'Infinite Scroll y Pull To Refresh.',subTitle:'Listas infinitas y Pull To Refresh',
   link:'/infinite',icon: Icons.list_alt_rounded),
+  MenuItem(title:'Cambiar Tema.',subTitle:'Cambiar tema de la aplicacion.',link:'/theme-changer',
+  icon:Icons.color_lens_outlined)
 ];
 
 class MenuItem {

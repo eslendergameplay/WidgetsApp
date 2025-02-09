@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu-items/menu_item.dart';
+import 'package:widgets_app/presentation/widgets/drawers/side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
@@ -9,12 +10,38 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    /*
+    La referencia con el estado actual del scaffold se tiene el drawer,menus laterales,si esta ubicado a el
+    final de la parte derecha o desde la parte izquierda en el comienzo y se puede.
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    */
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    return Scaffold(key: scaffoldKey,
         //si no esta en el tema se coloca en el AppBar centerTitle:true
         appBar: AppBar(title: const Text('Flutter + Material3.')),
-        body: _HomeView());
+        body: _HomeView(),
+        //NavigationDrawer(children:[]), y esta en tiempo de ejcucion,bottomNavigationBar y endDrawer derecha
+        drawer: SideMenu(scaffoldKey:scaffoldKey),
+    );
   }
 }
+/*
+-
+-
+-                                                                 ---
+Y se coloca al colocar un widget el drawer se coloca con un icono ---
+                                                                  ---
+y al tocar el icono y porque flutter deja cubrir el espacio de la pantalla porque se puede colocar un gradiente
+especifico de fondo que nos encarguemos de colocar el background y eso con los demas valores usar cada pixel
+para hacerlo desde 0 pero tambien existe un widget especializado para trabajar con un menu lateral que el
+Navigation Drawer y nos deja sus comportamientos normales o tocar parte de la pantalla y arrastrar hacia
+el menu de izquierda a derecha si es endDrawer o para abrir el drawer o por tocar el boton se abre o al tocar
+hacia afuera mientras el drawer esta abierto se cierra o al volver a tocar el icono se cierra tambien y ese es
+el comportamiento inicial,al no ser una pantalla entera y no rellenar con mucho codigo se hace.       
+Si es un menu general se coloca en carpeta shared o por funcionalidad y se coloca en widgets>drawers>clase
+por recomendacion.                                                           
+*/
 
 class _HomeView extends StatelessWidget {
   const _HomeView();
