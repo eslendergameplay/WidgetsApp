@@ -8,6 +8,7 @@ void main() {
   runApp(ProviderScope(child: WidgetApp()));
 }
 
+//This Widget is the root of the application
 class WidgetApp extends ConsumerWidget {
   const WidgetApp({super.key});
 
