@@ -11,11 +11,6 @@ class AnimatedScreen extends StatefulWidget {
   State<AnimatedScreen> createState() => _AnimatedScreenState();
 }
 
-/*
-Si se usa el animated Container en un Stateless Widget solo cambiara con un gestor de estado
-en tiempo de ejecucion sino solo al guardar aqui al programarla por eso un StatefulWidget al ser un widget
-simple.
-*/
 class _AnimatedScreenState extends State<AnimatedScreen> {
   double width = 50;
   double height = 100;
@@ -29,7 +24,7 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
         body: Center(
             child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
-                // o Curves.bounceOut o Curves.elasticOut
+                // Or Curves.bounceOut o Curves.elasticOut
                 curve: Curves.easeOutCubic,
                 width: (width < 0) ? 0 : width,
                 height: (height < 0) ? 0 : height,
@@ -40,18 +35,12 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               changeShape();
-              /*si tiene los mismos argumentos y solo esa funcion onPressed: changeShape,*/
             },
             child: const Icon(Icons.play_arrow_rounded)));
   }
 
   void changeShape() {
-    /*
-    random.nextBool(),
-    .nextDouble(),
-    .nextInt()
-    se puede usar nextInt aun siendo double por que luego se cambia a .0 pero si es obligado .nextDouble();
-    */
+    
     final random = Random();
     width = random.nextInt(300) + 120;
     height = random.nextInt(300) + 120;

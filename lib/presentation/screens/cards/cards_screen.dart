@@ -71,11 +71,6 @@ class _CardType2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Card(
-        /*
-      si no se especifica el borde sera de 0 pixeles y es cuadrado
-      borderRadius : BorderRadius.all() tiene tambien
-      .zero(),.all(),.circular(),.horizontal(),.only(),.vertical(),.lerp()
-      */
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12)),
             side: BorderSide(color: colors.outline)),
@@ -103,7 +98,7 @@ class _CardType3 extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Card(
-        //Antes era asi color:colors.surfaceVariant
+        
         color: colors.surfaceContainerHighest,
         elevation: elevation,
         child: Padding(

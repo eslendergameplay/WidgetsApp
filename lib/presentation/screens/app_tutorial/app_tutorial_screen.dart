@@ -49,7 +49,7 @@ class _AppTutorialScreenState extends State<AppTutorialScreen> {
                           },
                           child: const Text('Comenzar.'))))
               : SizedBox()
-          //Se aconseja usar SizedBox porque sin nada es de 0 pixeles.
+          
         ]));
   }
 
@@ -58,11 +58,7 @@ class _AppTutorialScreenState extends State<AppTutorialScreen> {
     super.initState();
     pageViewController.addListener(() {
       final page = pageViewController.page ?? 0;
-      /*
-      Aqui con el pageViewController al moverlo se registra el moviento desde 0.0 hasta 2.0 y va avanzando por
-      0.5 o 1.5 se deja slides.lenght -1.5 para al ir a la mitad de 3 y en la segunda pagina 1.0 vaya a la
-      mitad y aparezca el widget por condicion.
-      */
+      
       if (!endReached && page >= (slides.length - 1.5)) {
         setState(() {
           endReached = true;
@@ -90,7 +86,7 @@ class _Slide extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context).textTheme.titleLarge;
     final captionStyle = Theme.of(context).textTheme.bodySmall;
-    //mainAxisAlignment vertical y crossAxisAlignment horizontal
+    
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Center(
@@ -98,9 +94,7 @@ class _Slide extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-              /*
-      Hay Image.asset(),Image.file(),Image.memory() y Image.network()
-      */
+              
               Image(image: AssetImage(imageUrl)),
               const SizedBox(height: 20),
               Text(title, style: titleStyle),

@@ -30,9 +30,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
               strokeWidth: 2,
               onRefresh: () {
                 return onRefresh();
-                /*
-                O onRefresh : onRefresh, se coloca asi porque tiene los mismos argumentos o parametros
-                */
+                
               },
               child: Center(child: ListView.builder(
                   controller: scrollController,
@@ -50,7 +48,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
             )),
             floatingActionButton: FloatingActionButton(
                 onPressed: () => context.pop(),
-                //Para colocar un ternario y con la animacion no sea tan duro o estricto
+                
                 child: (isLoading)
                     ? SpinPerfect(
                         infinite: true,
@@ -61,7 +59,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
   void addFiveImages() {
     final lastid = imagesIds.last;
     imagesIds.addAll([1, 2, 3, 4, 5].map((e) => lastid + e));
-    //setState(() {});
+    
   }
 
   Future loadNextPage() async {
@@ -94,11 +92,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
   void moveScrollToBottom() {
     if ((scrollController.position.pixels + 150) <=
         scrollController.position.maxScrollExtent) return;
-    /*
-    Se coloca primero a que posicion ira y si se quiere arriba en vez de 120 seria 0 por eso es 120 abajo
-    y este se estira abajo si no se extiendio lo sufientemente menos de el scroll maximo o igual no se cumple la
-    condicion.
-    */
+    
     scrollController.animateTo(scrollController.position.pixels + 120,
         duration: const Duration(milliseconds: 300),
         curve: Curves.fastOutSlowIn);
@@ -108,12 +102,10 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      /*scrollController.position.pixels y al estar debajo del todo y exceder el scrolld maximo se cumple la 
-      condicion
-      */
+      
       if ((scrollController.position.pixels + 500) >=
           scrollController.position.maxScrollExtent) {
-        //LoadNextpage
+        
         loadNextPage();
       }
     });
@@ -121,9 +113,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   @override
   void dispose() {
-    /*
-    Se llama cuando el componente esta siendo destruido o sera destruido,esta destruido o marca a ser destruido
-    */
+    
     scrollController.dispose();
     isMounted = false;
     super.dispose();

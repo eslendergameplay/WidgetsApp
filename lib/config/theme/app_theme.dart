@@ -19,7 +19,7 @@ class AppTheme {
   const AppTheme({this.selectedColor = 0, this.isDarkMode = false})
       : assert(selectedColor >= 0 && selectedColor < colorList.length,
             'Selected Color must be between 0 and ${colorList.length - 1}');
-  /*O
+  /*Or
   :assert(selectedColor >= 0,'Selected Color must be greater than 0 or the same 0.')
   */
 
@@ -32,8 +32,6 @@ class AppTheme {
         appBarTheme: AppBarTheme(centerTitle: true));
   }
 
-  /*Tomara el valor y en base eso creara una instancia con el valor antes colocado o el que venia por defecto
-  hasta cambiar*/
   AppTheme copyWith({int? selectedColor, bool? isDarkMode}) =>
       AppTheme(selectedColor : selectedColor ?? this.selectedColor,isDarkMode:  isDarkMode ?? this.isDarkMode);
 }
